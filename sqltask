@@ -1,0 +1,164 @@
+ SQL: Structured Query Language, used to access and manipulate data.
+ CRUD operations in SQL:
+ CREATE - INSERT statements to insert new tuple into the relation.
+ READ - Read data already in the relations.
+ UPDATE - Modify already inserted data in the relation.
+ DELETE - Delete specific data row or multiple rows.
+
+ RDBMS (Relational Database Management System):
+ Examples: MySQL, MS SQL, Oracle, IBM, etc.
+
+ SQL DATA TYPES:
+ Data stored in tables with various types like INT, CHAR, VARCHAR, etc.
+
+ Types of SQL commands:
+ DDL (data definition language): CREATE, ALTER TABLE, DROP, TRUNCATE, RENAME.
+ DRL/DQL (data retrieval language / data query language): SELECT.
+ DML (data modification language): INSERT, UPDATE, DELETE.
+ DCL (Data Control language): GRANT, REVOKE.
+ TCL (Transaction control language): START TRANSACTION, COMMIT, ROLLBACK.
+
+ MANAGING DB (DDL):
+ Creation of DB: CREATE DATABASE IF NOT EXISTS db-name;
+ Use DB: USE db-name;
+ Drop DB: DROP DATABASE IF EXISTS db-name;
+ Show databases: SHOW DATABASES;
+ Show tables: SHOW TABLES;
+
+ CONSTRAINTS (DDL):
+ Primary Key: PK is not null, unique and only one per table.
+ Foreign Key: FK refers to PK of another table.
+ Unique: Can be null, table can have multiple unique attributes.
+Check: age_check CHECK (age > 12)
+Default:Set default value of the column
+
+
+ WHERE
+Reduce rows based on given conditions.
+E.g., SELECT * FROM customer WHERE age > 18;
+
+BETWEEN
+SELECT * FROM customer WHERE age between 0 AND 100;
+
+
+IN
+e.g., SELECT * FROM officers WHERE officer_name IN ('a','b','c');
+
+AND/OR/NOT
+AND: WHERE cond1 AND cond2
+OR: WHERE cond1 OR cond2
+NOT: WHERE col_name NOT IN (1,2,3,4);
+
+IS NULL
+e.g., SELECT * FROM customer WHERE prime_status is NULL;
+
+Pattern Searching
+SELECT * FROM customer WHERE name LIKE '%p_';
+
+ORDER BY
+e.g., SELECT * FROM customer ORDER BY name DESC;
+
+GROUP BY
+Groups into categories based on the column given.
+SELECT c1, c2, c3 FROM sample_table WHERE cond GROUP BY c1, c2, c3.
+
+Used with aggregation functions to perform various actions.
+COUNT()
+SUM()
+AVG()
+MIN()
+MAX()
+
+DISTINCT
+Find distinct values in the table.
+SELECT DISTINCT(col_name) FROM table_name;
+GROUP BY can also be used for the same.
+
+GROUP BY HAVING
+Select COUNT(cust_id), country from customer GROUP BY country HAVING COUNT(cust_id) > 50;
+
+
+ALTER OPERATIONS
+Changes schema
+Add a new column.
+e.g., ALTER TABLE customer ADD age INT NOT NULL;
+
+MODIFY
+Change the datatype of an attribute.
+E.g., VARCHAR TO CHAR
+ALTER TABLE customer MODIFY name CHAR(1024);
+
+CHANGE COLUMN
+Rename a column name.
+e.g., ALTER TABLE customer CHANGE COLUMN name customer-name VARCHAR(1024);
+
+DROP COLUMN
+Drop a column completely.
+e.g., ALTER TABLE customer DROP COLUMN middle-name;
+
+RENAME
+Rename the table name itself.
+e.g., ALTER TABLE customer RENAME TO customer-details;
+
+DATA MANIPULATION LANGUAGE (DML)
+INSERT
+INSERT INTO table-name(col1, col2, col3) VALUES (v1, v2, v3), (val1, val2, val3);
+
+UPDATE
+UPDATE table-name SET col1 = 1, col2 = ‘abc’ WHERE id = 1;
+Update multiple rows e.g.,
+UPDATE student SET standard = standard + 1;
+
+ON UPDATE CASCADE
+Can be added to the table while creating constraints. Suppose there is a situation where we have two tables such that the primary key of one table is the foreign key for another table. If we update the primary key of the first table, then using the ON UPDATE CASCADE, the foreign key of the second table automatically gets updated.
+
+DELETE
+DELETE FROM table-name WHERE id = 1;
+DELETE FROM table-name; //all rows will be deleted.
+DELETE CASCADE - FOREIGN KEY(cust_id) REFERENCES customer(id) ON DELETE CASCADE
+ON DELETE NULL - FOREIGN KEY(cust_id) REFERENCES customer(id) ON DELETE SET NULL
+
+
+REPLACE
+Primarily used for an already present tuple in a table.
+As UPDATE, using REPLACE with the help of WHERE clause in PK, then that row will be replaced.
+As INSERT, if there is no duplicate data, a new tuple will be inserted.
+REPLACE INTO student (id, class) VALUES(4, 3);
+
+Here is the continuation of the content from the PDF notes on SQL:
+
+### JOINING TABLES
+- **INNER JOIN:**
+  - Returns a resultant table with matching values from both tables.
+  - Syntax: `SELECT column-list FROM table1 INNER JOIN table2 ON condition1;`
+- **OUTER JOIN:**
+  - **LEFT JOIN:**
+    - Returns all data from the left table and matched data from the right table.
+    - Syntax: `SELECT columns FROM table LEFT JOIN table2 ON Join_Condition;`
+  - **RIGHT JOIN:**
+    - Returns all data from the right table and matched data from the left table.
+    - Syntax: `SELECT columns FROM table RIGHT JOIN table2 ON join_cond;`
+  - **FULL JOIN:**
+    - Returns all data when there is a match on either left or right table data.
+    - Emulated in MySQL using LEFT and RIGHT JOIN.
+- **CROSS JOIN:**
+  - Returns all possible combinations of data from both tables.
+  - Syntax: `SELECT column-lists FROM table1 CROSS JOIN table2;`
+- **SELF JOIN:**
+  - Used to join a table with itself.
+  - Syntax: `SELECT columns FROM table as t1 INNER JOIN table as t2 ON t1.id = t2.id;`
+
+
+### SET OPERATIONS
+- Used to combine multiple SELECT statements:
+  - **UNION:** Combines two or more SELECT statements.
+    - Syntax: `SELECT * FROM table1 UNION SELECT * FROM table2;`
+  - **INTERSECT:** Returns common values of the tables.
+  - **MINUS:** Returns rows from the first table that do not occur in the second.
+
+### SUBQUERIES
+  - **Subquery using WHERE clause:** 
+    - Syntax: `SELECT column_list(s) FROM table_name WHERE column_name OPERATOR (SELECT column_list(s) FROM table_name [WHERE]);`
+  - **Subquery using FROM clause:** 
+    - Syntax: `SELECT MAX(rating) FROM (SELECT * FROM movie WHERE country = 'India') as temp;`
+  
