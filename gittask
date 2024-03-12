@@ -1,0 +1,100 @@
+//To clone a repo
+git clone <required link>
+
+//change directory
+cd
+
+//to clear the terminal
+clear
+
+//list of files(for hidden use ls -a)
+ls
+
+//display the status of code
+git status
+
+//After file modification
+git add .
+then 
+git commit -m ""
+
+//types of status
+untracked(new files that git doesn't tyrack yet)
+modified(changed)
+staged(file is ready to be commited)
+unmodified(unchanged)
+
+//add a git repo in machine folder
+git init
+
+//to add file
+git add <file name>
+or
+//to add all files
+git add .
+
+//to commit
+git commit -m "comment"
+
+//to attach the code with repo
+git remote add origin <repo link>
+
+//to push the code from machine to repo
+git push origin <branch name>
+
+//to check repo
+git remote -v
+
+//to check branch
+git branch
+
+//to rename the current branch
+git branch -M <new name>
+
+//set upstream in push
+git push -u origin main
+
+//to navigate
+git checkout <branch name>
+
+//to create new branch
+git checkout -b <branch name>
+
+//to delete branch
+git branch -d <branch name>
+
+//to compare commits
+git diff <branch name>
+
+//to merge 2 branches
+git merge <branch name>
+or 
+using PR(pull request)
+
+//to reflect the changes in machine after PR
+git pull origin <branch name>
+
+//resolve merge conflicts
+check which code you want to push.
+
+//undoing changes
+case 1: staged changes
+git reset <file name>
+git reset
+
+case 2: commited changes
+git reset HEAD~1
+//for many commits
+git reset <commit hash>  //to reflect changes in git
+git reset -hard <commit hash>   //to reflect changes in our machine
+
+
+//to check all commits
+git log
+
+//to copy the repo of another account
+use Fork
+
+
+
+
