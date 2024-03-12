@@ -1,0 +1,90 @@
+nodejs is a javascript runtime environment built on V8 javascript runtime which runs on server side rather than browser.
+
+//why nodejs
+nodejs allows us to write javascript on our machine as we know javascript was made for browser.
+
+//mkdir to create new folder
+
+//editor mode
+node
+then write .editor
+ctrl+c to cancel
+
+//core modules are same as javascript libraries
+ex: fs,os,path
+//node package manager
+npm init
+package.json,package-lock.json,node-modules will be installed
+npm i <module name>
+npm uninstall <module name>
+//fs sync
+const fs=require('fs)
+fs.writeFilesync('read.txt','hello');//override
+fs.appendFilesync('read.txt','hi');//previous data+new
+fs.readFilesync('read.txt','utf-8');
+fs.unlinksync('read.txt')//to delete file
+fs.rmdirSync('folder')//to delete folder
+
+//fs async
+fs.writefile('read.tx,'today',(err)=>{
+    console.log('file created')
+});
+fs.appendfile('read.txt','and tomorrow',(err)=>{
+    console.log('added')
+})
+fs.readfile('read.txt','utf-8',(err,data)=>{
+    console.log(data)
+})
+
+//os module
+const os=require('os')
+console.log(os.arch())
+
+//path
+const path=require('path')
+console.log(path.join(__dirname,'<go to the required path>'))
+//nodejs web server
+
+const http=require('http')
+const server=http.createServer((req,res)=>{
+    if(req.url='/')
+    res.end('hello');
+})
+server.listen(8000,'127.0.0.1',()=>{
+    console.log('hello from server');
+})
+
+//5 type of responses
+informational
+successful
+redirects
+client side error
+server side error
+
+//json(javascript object notation)
+const data={
+    name:'sahil'
+}
+const converteddata=JSON.Stringify(data)//converted to json
+const objdata=JSON.parse(converteddata);//object
+
+
+//events module
+const EventEmitter = require('events');
+
+onst myEmitter = new EventEmitter();
+
+myEmitter.on('customEvent', (arg) => {
+  console.log('Event triggered with argument:', arg);
+});
+
+myEmitter.emit('customEvent', 'Hello, world!');
+
+//express framework
+npm i express
+const express=requrie('express')
+const app=express();
+app.get('/',(req,res,next)=>{
+    res.status(200).json({message:'hello'})
+})
+app.listen(3000,()=>)
